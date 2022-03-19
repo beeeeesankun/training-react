@@ -14,33 +14,24 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
-<<<<<<< HEAD
-    Route::post('/login',  [LoginController::class, 'login'])->name('login');
-=======
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
->>>>>>> upstream/main
+	Route::post('/login', [LoginController::class, 'login'])->name('login');
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
-        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-<<<<<<< HEAD
-        Route::resource('users', UserController::class)->only(['index']);
-    });
-});
-=======
-        Route::get('/users',  [UserController::class, 'index'])->name('index');
-        Route::post('/users',  [UserController::class, 'store'])->name('store');
-        Route::put('/users/{user}',  [UserController::class, 'update'])->name('update');
-        Route::delete('/users/{user}',  [UserController::class, 'destroy'])->name('destroy');
-        route::get('/users/edit/{user}',  [UserController::class, 'edit'])->name('edit');
-    });
+	Route::group(['prefix' => 'v1', 'as' => 'api.'], function () {
+		Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+		Route::get('/users',  [UserController::class, 'index'])->name('index');
+		Route::post('/users',  [UserController::class, 'store'])->name('store');
+		Route::put('/users/{user}',  [UserController::class, 'update'])->name('update');
+		Route::delete('/users/{user}',  [UserController::class, 'destroy'])->name('destroy');
+		route::get('/users/edit/{user}',  [UserController::class, 'edit'])->name('edit');
+	});
 });
 
 Route::fallback(function () {
-    return response()->json([
-        'message' => 'Page Not Found. If error persists, contact admin@gmail.com'
-    ], 404);
+	return response()->json([
+		'message' => 'Page Not Found. If error persists, contact admin@gmail.com'
+	], 404);
 });
->>>>>>> upstream/main
